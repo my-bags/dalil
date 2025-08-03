@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل الباحثين فى الخدمة الاجتماعية</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --bg-color: #f8f9fa;
+            --text-color: #2c3e50;
+            --card-bg: #ffffff;
+            --border-color: #dee2e6;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #ecf0f1;
+            --secondary-color: #5dade2;
+            --accent-color: #ec7063;
+            --bg-color: #1a1a1a;
+            --text-color: #ecf0f1;
+            --card-bg: #2d2d2d;
+            --border-color: #404040;
+        }
+
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .header-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.3; }
+        }
+
+        .main-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sub-title {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .controls-section {
+            background-color: var(--card-bg);
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .tool-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .tool-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .tool-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-description {
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        .tool-link {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .tool-link:hover {
+            background-color: var(--accent-color);
+            transform: scale(1.05);
+            color: white;
+        }
+
+        .category-section {
+            margin-bottom: 3rem;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            background-color: var(--accent-color);
+        }
+
+        .search-box {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .filter-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            margin: 0.25rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--accent-color);
+            transform: scale(1.05);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            display: none;
+            z-index: 1000;
+        }
+
+        .back-to-top:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2rem;
+            }
+            
+            .sub-title {
+                font-size: 1rem;
+            }
+            
+            .theme-toggle {
+                bottom: 20px;
+                left: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-section">
+        <div class="container">
+            <h1 class="main-title">دليل الباحثين فى الخدمة الاجتماعية</h1>
+            <p class="sub-title">إعداد الأستاذ ياسر محمد مدير مكتبة كلية الخدمة الاجتماعية بالفيوم</p>
+        </div>
+    </div>
+
+    <div class="controls-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <div class="search-box">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                            <input type="text" class="form-control" id="searchInput" placeholder="ابحث عن أداة...">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 text-center">
+                    <button class="filter-btn active" data-filter="all">الكل</button>
+                    <button class="filter-btn" data-filter="research">البحث العلمي</button>
+                    <button class="filter-btn" data-filter="writing">الكتابة الأكاديمية</button>
+                    <button class="filter-btn" data-filter="analysis">تحليل البيانات</button>
+                    <button class="filter-btn" data-filter="reference">المراجع والمصادر</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <!-- قسم البحث العلمي -->
+        <div class="category-section" data-category="research">
+            <h2 class="category-title"><i class="fas fa-search"></i> أدوات البحث العلمي</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="tool-card">
+                        <div class="tool-icon"><i class="fas fa-brain"></i></div>
+                        <h3 class="tool-title">Semantic Scholar</h3>
+                        <p class="tool-description">محرك بحث أكاديمي يستخدم الذكاء الاصطناعي لفهم سياق الأبحاث وتقديم نتائج دقيقة في مجال العلوم الاجتماعية.</p>
+                        <a href="https://www.semanticscholar.org" class="tool-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> زيارة الموقع
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="tool-card">
+                        <div class="tool-icon"><i class="fas fa-robot"></i></div>
+                        <h3 class="tool-title">Elicit</h3>
+                        <p class="tool-description">مساعد بحثي بالذكاء الاصطناعي يساعد في تلخيص الأبحاث واستخراج المعلومات الرئيسية من الأوراق الأكاديمية.</p>
+                        <a href="https://elicit.org" class="tool-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> زيارة الموقع
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="tool-card">
+                        <div class="tool-icon"><i class="fas fa-book"></i></div>
+                        <h3 class="tool-title">Research Rabbit</h3>
+                        <p class="tool-description">أداة اكتشاف أكاديمي تستخدم الذكاء الاصطناعي للعثور على أوراق بحثية متعلقة وبناء شبكات اقتباس بين الأبحاث.</p>
+                        <a href="https://researchrabbit.ai" class="tool-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> زيارة الموقع
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم الكتابة الأكاديمية -->
+        <div class="category-section" data-category="writing">
+            <h2 class="category-title"><i class="fas fa-pen-fancy"></i> أدوات الكتابة الأكاديمية</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="tool-card">
+                        <div class="tool-icon"><i class="fas fa-spell-check"></i></div>
+                        <h3 class="tool-title">Grammarly</h3>
+                        <p class="tool-description">أداة ذكاء اصطناعي لتحسين الكتابة الأكاديمية، تصحيح الأخطاء النحوية، وتحسين الأسلوب والوضوح.</p>
+                        <a href="https://www.grammarly.com" class="tool-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> زيارة الموقع
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="tool-card">
+                        <div class="tool-icon"><i class="fas fa-language"></i></div>
+                        <h3 class="tool-title">QuillBot</h3>
+                        <p class="tool-description">أداة إعادة صياغة بالذكاء الاصطناعي تساعد في تحسين النصوص الأكاديمية وتجنب الانتحال العلمي.</p>
+                        <a href="https://quillbot.com" class="tool-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> زيارة الموقع
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="tool-card">
+                        <div class="tool-icon"><i class="fas fa-quote-right"></i></div>
+                        <h3 class="tool-title">SciSpace</h3>
+                        <p class="tool-description">منصة ذكاء اصطناعي لفهم الأوراق البحثية المعقدة والإجابة على أسئلة حول المحتوى الأكاديمي.</p>
+                        <a href="https://typeset.io" class="tool-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> زيارة الموقع
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم تحليل البيانات -->
+        <div class="category-section" data-category="analysis">
+            <h2 class="category-title"><i class="fas fa-chart-line"></i> أدوات تحليل البيانات</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="tool-card">
+                        <div class="tool-icon"><i class="fas fa-chart-bar"></i></div>
+                        <h3 class="tool-title">Tableau</h3>
+                        <p class="tool-description">منصة تحليل بيانات وتصور معلومات تستخدم الذكاء الاصطناعي لتحويل البيانات الاجتماعية إلى رؤى قابلة للفهم.</p>
+                        <a href="https://www.tableau.com" class="tool-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> زيارة الموقع
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="tool-card">
+                        <div class="tool-icon"><i class="fas fa-database"></i></div>
+                        <h3 class="tool-title">KNIME</h3>
+                        <p class="tool-description">منصة مفتوحة المصدر لتحليل البيانات وتطبيق خوارزميات الذكاء الاصطناعي في البحوث الاجتماعية.</p>
+                        <a href="https://www.knime.com" class="tool-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> زيارة الموقع
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="tool-card">
+                        <div class="tool-icon"><i class="fas fa-project-diagram"></i></div>
+                        <h3 class="tool-title">Orange</h3>
+                        <p class="tool-description">أداة بصرية لتحليل البيانات وتعلم الآلة، مناسبة للباحثين في الخدمة الاجتماعية لتحليل البيانات الكمية.</p>
+                        <a href="https://orangedatamining.com" class="tool-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> زيارة الموقع
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم المراجع والمصادر -->
+        <div class="category-section" data-category="reference">
+            <h2 class="category-title"><i class="fas fa-bookmark"></i> أدوات المراجع والمصادر</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="tool-card">
+                        <div class="tool-icon"><i class="fas fa-quote-left"></i></div>
+                        <h3 class="tool-title">Zotero</h3>
+                        <p class="tool-description">أداة إدارة مراجع ومصادر تستخدم الذكاء الاصطناعي لتنظيم المصادر البحثية وإنشاء الاستشهادات تلقائياً.</p>
+                        <a href="https://www.zotero.org" class="tool-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> زيارة الموقع
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="tool-card">
+                        <div class="tool-icon"><i class="fas fa-citation"></i></div>
+                        <h3 class="tool-title">Mendeley</h3>
+                        <p class="tool-description">منصة إدارة مراجع وتعاون أكاديمي مع ميزات ذكاء اصطناعي لاقتراح أبحاث ذات صلة وإنشاء شبكات بحثية.</p>
+                        <a href="https://www.mendeley.com" class="tool-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> زيارة الموقع
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="tool-card">
+                        <div class="tool-icon"><i class="fas fa-file-alt"></i></div>
+                        <h3 class="tool-title">Connected Papers</h3>
+                        <p class="tool-description">أداة ذكاء اصطناعي لإنشاء خرائط مرئية للأوراق البحثية المتصلة واكتشاف الأبحاث الأساسية في مجال معين.</p>
+                        <a href="https://www.connectedpapers.com" class="tool-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> زيارة الموقع
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="theme-toggle" id="themeToggle" title="تبديل الوضع الليلي">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <button class="back-to-top" id="backToTop" title="العودة للأعلى">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // تبديل الوضع الليلي
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        const themeIcon = themeToggle.querySelector('i');
+
+        // التحقق من الوضع المحفوظ
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            html.setAttribute('data-theme', 'dark');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                html.removeAttribute('data-theme');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // البحث
+        const searchInput = document.getElementById('searchInput');
+        const toolCards = document.querySelectorAll('.tool-card');
+
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            
+            toolCards.forEach(card => {
+                const title = card.querySelector('.tool-title').textContent.toLowerCase();
+                const description = card.querySelector('.tool-description').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // الفلترة
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const categorySections = document.querySelectorAll('.category-section');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // إزالة الكلاس النشط من جميع الأزرار
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // إضافة الكلاس النشط للزر المضغوط
+                btn.classList.add('active');
+                
+                const filter = btn.getAttribute('data-filter');
+                
+                categorySections.forEach(section => {
+                    if (filter === 'all' || section.getAttribute('data-category') === filter) {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // زر العودة للأعلى
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.style.display = 'block';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // إضافة تأثيرات عند التمرير
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(20px)';
+                    
+                    setTimeout(() => {
+                        entry.target.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 100);
+                    
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // مراقبة جميع بطاقات الأدوات
+        toolCards.forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
